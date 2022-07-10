@@ -1,0 +1,18 @@
+label{display:block;background:#333a3c;padding:.5rem;border-radius:.4rem}
+textarea{width:100%;min-height:150px}
+grid{display:grid}
+.gateoverview{text-shadow:0 0 5px #fff;margin:2%}
+.flight{min-width:1px}
+.flight.arr{background-color:#00ff00a3;min-height:30px;box-shadow:0 0 10px #0f0}
+.flight.dep{background-color:#ff0000b3;min-height:30px;box-shadow:0 0 10px red}
+.occupancy{background-color:#fbfb006b;min-height:30px}
+.devider{height:1px;border-bottom:1px solid #fff}
+.time{width:1px;border-left:1px dashed #ffffff66}
+body{margin:0;font-family:sans-serif;background:linear-gradient(59deg,#000,#495074);color:wheat}
+form{display:grid;grid-template-columns:auto auto}
+form>*{grid-column:1;margin:10px}
+.log{grid-column:2;grid-row:1/5}
+.log textarea{resize:vertical;background:#000;color:#fff;font-family:monospace}
+form input[type=submit]{padding:.3rem;font-size:1.1rem;background:#007200;color:#fff}
+h1{color:#fff;text-shadow:none}
+.time::before{content:".";color:transparent}

@@ -1,0 +1,41 @@
+{
+    "Aerodrome":"XXXX",
+    "Terminals":[
+        {
+            "Name":"Terminal 1",
+            "Priority": 100,
+            "Description":"Schengen",
+            "Filter": {
+                "Schengen": 1,
+                "RefAerodromStartswith": [""],
+                "Airline": [""],
+                "Cat": ["c"]
+            },
+            "Stands": ["1","2","3"]
+        },
+        {
+            "Name":"Terminal 2",
+            "Priority": 100,
+            "Description":"Non-Schengen",
+            "Filter": {
+                "Schengen": -1,
+                "RefAerodromStartswith": [""],
+                "Airline": [""],
+                "Cat": ["c"]
+            },
+            "Stands": ["4","5","6"]
+        },
+        {
+            "Name":"Terminal 3",
+            "Priority": 100,
+            "Description":"Heavys",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [""],
+                "Airline": [""],
+                "Cat": ["d"]
+            },
+            "Stands": ["7","8","9"]
+        }
+    ]
+}
