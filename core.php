@@ -16,7 +16,7 @@ function main($skip_assigned = false) {
     if (!$skip_assigned)
     {
         global $MYSQL;
-        $promise = $MYSQL->execute("UPDATE `rfe_flights` SET `gate`= NULL",MYSQL_ASYNC);
+        $promise = $MYSQL->execute("UPDATE `rfe_flights` SET `gate`= NULL");
     }
 
     $event_airport = get_event_airport();
@@ -96,7 +96,7 @@ function get_all_flights()
     global $MYSQL;
     $flights = array();
 
-    $query = $MYSQL->execute("SELECT `id` FROM `rfe_flights`");
+    $query = $MYSQL->execute("SELECT `id` FROM `rfe_flights` ORDER BY COALESCE(`deptime`,`arrtime`) ASC");
     foreach ($query->fetchAll() as $row)
     {
         $flights[] = Flight::FromID($row['id']);
@@ -117,12 +117,18 @@ function generate($flights, $stands, $eventlocation)
             
         $filter = get_filter($flight, $eventlocation);
         
+        $assigned = false;
         foreach ($stands as $stand) {
             if (check_filter($filter, $stand))
             {
+                $assigned = true;
                 $flight->assign_stand($stand);
                 break;
             }
+        }
+        if (!$assigned)
+        {
+            echo "[ERROR] Could not assign {$flight->radiocallsign()}\n";
         }
     }
 }

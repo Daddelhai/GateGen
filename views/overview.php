@@ -9,7 +9,7 @@ abstract class DIRECTION {
 
 $flights = [];
 
-$query = $MYSQL->exec("SELECT `id`,`gate`,`arrtime`,`deptime`,`radiocallsign` FROM `rfe_flights` WHERE `Gate` IS NOT NULL ORDER BY CAST(`Gate` AS INT) ASC, IFNULL(`arrtime`,`deptime`)ASC", MYSQL_ASYNC);
+$query = $MYSQL->exec("SELECT `id`,`gate`,`arrtime`,`deptime`,`radiocallsign` FROM `rfe_flights` WHERE `Gate` IS NOT NULL ORDER BY `Gate` ASC, IFNULL(`arrtime`,`deptime`)ASC");
 
 $lastgate = "";
 
@@ -39,7 +39,7 @@ foreach ($query->fetchAll() as $row)
     if ($lastgate != $gate)
     {
         if ($lastarr !== null) {
-            echo "<div class=\"occupancy\" style=\"grid-column:$lastarr/$max;grid-row:$r\"></div>";
+            echo "<div class=\"occupancy\" style=\"grid-column:$lastarr/$max;grid-row:$r\" cs=\"$cs\"><div class=\"cs\">$cs</div></div>";
         }
 
         $lastgate = $gate;
@@ -64,25 +64,26 @@ foreach ($query->fetchAll() as $row)
     if ($direction == DIRECTION::DEPARTURE)
     {
         if ($lastarr === null) {
-            echo "<div class=\"occupancy\" style=\"grid-column:2/$col;grid-row:$r\"></div>";
+            echo "<div class=\"occupancy\" style=\"grid-column:2/$col;grid-row:$r\" cs=\"$cs\"><div class=\"cs\">$cs</div></div>";
         }
         else
         {
-            echo "<div class=\"occupancy\" style=\"grid-column:$lastarr/$col;grid-row:$r\"></div>";
+            echo "<div class=\"occupancy\" style=\"grid-column:$lastarr/$col;grid-row:$r\" cs=\"$cs\" cs2=\"$lastarr_cs\"><div class=\"cs\">$lastarr_cs<br>$cs</div></div>";
         } 
         $lastarr = null;
 
-        echo "<div class=\"flight dep\" style=\"grid-column:$col;grid-row:$r\" title=\"Departure: $cs\"></div>";
+        echo "<div class=\"flight dep\" style=\"grid-column:$col;grid-row:$r\" title=\"Departure: $cs\" cs=\"$cs\"></div>";
     }
     elseif ($direction == DIRECTION::ARRIVAL)
     {
         $lastarr = $col + 1;
+        $lastarr_cs = $cs;
 
-        echo "<div class=\"flight arr\" style=\"grid-column:$col;grid-row:$r\" title=\"Arrival: $cs\"></div>";
+        echo "<div class=\"flight arr\" style=\"grid-column:$col;grid-row:$r\" title=\"Arrival: $cs\" cs=\"$cs\"></div>";
     }    
 }
 if ($lastarr !== null) {
-    echo "<div class=\"occupancy\" style=\"grid-column:$lastarr/$max;grid-row:$r\"></div>";
+    echo "<div class=\"occupancy\" style=\"grid-column:$lastarr/$max;grid-row:$r\" cs=\"$cs\"><div class=\"cs\">$cs</div></div>";
 }
 ++$r;
 

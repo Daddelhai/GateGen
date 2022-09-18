@@ -209,20 +209,20 @@ class MySQLConn {
             $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, $this->__db, MYSQL_PORT);
 
             if (!($result = $link->query($sql, MYSQLI_ASYNC|MYSQLI_STORE_RESULT))) {
-                throw new Exception('Error executing MySQL query: '.$sql.'. MySQL error '.mysqli_errno($this->_DB).': '.mysqli_error($this->_DB));
+                throw new Exception('Error executing MySQL query: '.$sql.'. MySQL error '.mysqli_errno($this->__DBconn).': '.mysqli_error($this->__DBconn));
             }
             return new AsyncMySQLQuery($link);
         }
         else
         {
             if (!($result = $this->__DBconn->query($sql))) {
-                throw new Exception('Error executing MySQL query: '.$sql.'. MySQL error '.mysqli_errno($this->_DB).': '.mysqli_error($this->_DB));
+                throw new Exception('Error executing MySQL query: '.$sql.'. MySQL error '.mysqli_errno($this->__DBconn).': '.mysqli_error($this->__DBconn));
             }
             return new MySQLQuery($result);
         }
     }
 
-    public function execute(String $sql, bool $async = true)
+    public function execute(String $sql, bool $async = false)
     {
         return $this->exec($sql,$async);
     }

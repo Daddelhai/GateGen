@@ -1,11 +1,11 @@
 label{display:block;background:#333a3c;padding:.5rem;border-radius:.4rem}
 textarea{width:100%;min-height:150px}
 grid{display:grid}
-.gateoverview{text-shadow:0 0 5px #fff;margin:2%}
+.gateoverview{text-shadow:0 0 5px #fff;margin:2%;margin-right:0;grid-template-columns:auto 65px}
 .flight{min-width:1px}
 .flight.arr{background-color:#00ff00a3;min-height:30px;box-shadow:0 0 10px #0f0}
 .flight.dep{background-color:#ff0000b3;min-height:30px;box-shadow:0 0 10px red}
-.occupancy{background-color:#fbfb006b;min-height:30px}
+.occupancy{background-color:#fbfb006b;min-height:30px;overflow:hidden;height: 47px;}
 .devider{height:1px;border-bottom:1px solid #fff}
 .time{width:1px;border-left:1px dashed #ffffff66}
 body{margin:0;font-family:sans-serif;background:linear-gradient(59deg,#000,#495074);color:wheat}
@@ -16,3 +16,5 @@ form>*{grid-column:1;margin:10px}
 form input[type=submit]{padding:.3rem;font-size:1.1rem;background:#007200;color:#fff}
 h1{color:#fff;text-shadow:none}
 .time::before{content:".";color:transparent}
+.cs{position:absolute;color:#fff;text-shadow: 0 0 5px #000;padding:7px}
+input#search{margin:0 2%;background:#ffffffa1;border:none;padding:5px;width:96%}

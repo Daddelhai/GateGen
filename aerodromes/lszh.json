@@ -1,0 +1,347 @@
+{
+    "Aerodrome": "LSZH",
+    "Terminals": [
+        {
+            "Name": "DOCK E",
+            "Priority": 100,
+            "Description": "Non-Schengen, Super",
+            "Filter": {
+                "Schengen": -1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "e"
+                ]
+            },
+            "Stands": [
+                "E19",
+                "E67"
+            ]
+        },
+        {
+            "Name": "DOCK E",
+            "Priority": 100,
+            "Description": "Non-Schengen, Heavy",
+            "Filter": {
+                "Schengen": -1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "d"
+                ]
+            },
+            "Stands": [
+                "E20",
+                "E23",
+                "E26",
+                "E27",
+                "E34",
+                "E35",
+                "E42",
+                "E43",
+                "E46",
+                "E47",
+                "E53",
+                "E52",
+                "E53",
+                "E56",
+                "E57"
+            ]
+        },
+        {
+            "Name": "DOCK E",
+            "Priority": 100,
+            "Description": "Non-Schengen, Medium",
+            "Filter": {
+                "Schengen": -1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "c"
+                ]
+            },
+            "Stands": [
+                "E58",
+                "E62",
+                "E64"
+            ]
+        },
+        {
+            "Name": "DOCK A",
+            "Priority": 100,
+            "Description": "Schengen, Medium",
+            "Filter": {
+                "Schengen": 1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "c"
+                ]
+            },
+            "Stands": [
+                "A03",
+                "A05",
+                "A07",
+                "A09",
+                "A49",
+                "A11",
+                "A13",
+                "A15",
+                "A17",
+                "A57",
+                "A10",
+                "A08",
+                "A04",
+                "A02",
+                "A44",
+                "A42"
+            ]
+        },
+        {
+            "Name": "DOCK B",
+            "Priority": 99,
+            "Description": "Schengen, Medium",
+            "Filter": {
+                "Schengen": 1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "c"
+                ]
+            },
+            "Stands": [
+                "B31",
+                "B33",
+                "B37",
+                "B39",
+                "B41",
+                "B45"
+            ]
+        },
+        {
+            "Name": "DOCK B",
+            "Priority": 99,
+            "Description": "Schengen, Heavy",
+            "Filter": {
+                "Schengen": 1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "d"
+                ]
+            },
+            "Stands": [
+                "B34",
+                "B38"
+            ]
+        },
+        {
+            "Name": "I,H Stands",
+            "Priority": 90,
+            "Description": "Schengen, Medium",
+            "Filter": {
+                "Schengen": 1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "c"
+                ]
+            },
+            "Stands": [
+                "I01",
+                "I02",
+                "I03",
+                "I04",
+                "I05",
+                "H11",
+                "H12",
+                "H13",
+                "H14"
+            ]
+        },
+        {
+            "Name": "C Stands",
+            "Priority": 50,
+            "Description": "Heavy",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "d"
+                ]
+            },
+            "Stands": [
+                "C50",
+                "C52",
+                "C55",
+                "C57",
+                "C59"
+            ]
+        },
+        {
+            "Name": "D Stands",
+            "Priority": 50,
+            "Description": "Medium",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "c"
+                ]
+            },
+            "Stands": [
+                "D01",
+                "D03",
+                "D05",
+                "D06",
+                "D08",
+                "D09",
+                "D11",
+                "D12",
+                "D14",
+                "D15",
+                "D17"
+            ]
+        },
+        {
+            "Name": "T Stands",
+            "Priority": 110,
+            "Description": "Cargo",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": ["CLX","GEC","UPS"],
+                "Cat": [
+                    "c","d"
+                ]
+            },
+            "Stands": [
+                "T52",
+                "T53",
+                "T55",
+                "T45"
+            ]
+        },
+        {
+            "Name": "P Stands",
+            "Priority": 10,
+            "Description": "Non-Schengen, Medium",
+            "Filter": {
+                "Schengen": -1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "c"
+                ]
+            },
+            "Stands": [
+                "P31",
+                "P32",
+                "P33",
+                "P34",
+                "P35",
+                "P36",
+                "P37"
+            ]
+        },
+        {
+            "Name": "F Stands",
+            "Priority": 10,
+            "Description": "Schengen, Small",
+            "Filter": {
+                "Schengen": 1,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "a","b"
+                ]
+            },
+            "Stands": [
+                "F72",
+                "F73",
+                "F74",
+                "F75"
+            ]
+        },
+        {
+            "Name": "G Stands",
+            "Priority": 1,
+            "Description": "Medium overflow",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "a","b","c"
+                ]
+            },
+            "Stands": [
+                "G11",
+                "G12",
+                "G13",
+                "G14"
+            ]
+        },
+        {
+            "Name": "G Stands",
+            "Priority": 1,
+            "Description": "Small overflow",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "a","b"
+                ]
+            },
+            "Stands": [
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06"
+            ]
+        },
+        {
+            "Name": "W Stands",
+            "Priority": 1,
+            "Description": "Medium overflow",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "a","b","c"
+                ]
+            },
+            "Stands": [
+                "W05",
+                "W04",
+                "W03",
+                "W30",
+                "W02",
+                "W01"
+            ]
+        },
+        {
+            "Name": "W Stands",
+            "Priority": 1,
+            "Description": "Heavy overflow",
+            "Filter": {
+                "Schengen": 0,
+                "RefAerodromStartswith": [],
+                "Airline": [],
+                "Cat": [
+                    "d","e"
+                ]
+            },
+            "Stands": [
+                "W42",
+                "W41"
+            ]
+        }
+    ]
+}

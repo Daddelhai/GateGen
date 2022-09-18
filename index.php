@@ -24,5 +24,38 @@ require_once "include/mysql.php";
             </textarea>
         </div>
     </form>
+    <input type="text" value="" id="search" placeholder="Search">
     <?php include "views/overview.php"; ?>
+    <script>
+        document.getElementById("search").addEventListener("keyup", function(){
+            v = document.getElementById("search").value;
+
+            if (v) 
+            {
+                all = document.querySelectorAll('div[cs]');
+                for (const element of all) {
+                    element.style.filter = "grayscale(1)"
+                }
+                matching = document.querySelectorAll('div[cs^='+v+']');
+                for (const element of matching) {
+                    element.style.filter = ""
+                }
+                matching2 = document.querySelectorAll('div[cs2^='+v+']');
+                for (const element of matching2) {
+                    element.style.filter = ""
+                }
+            }
+            else
+            {
+                all = document.querySelectorAll('div[cs]');
+                for (const element of all) {
+                    element.style.filter = "grayscale(0)"
+                }
+            }
+        });
+        all = document.querySelectorAll('div[cs]');
+        for (const element of all) {
+            element.style.filter = "grayscale(0)"
+        }
+    </script>
 </body>
