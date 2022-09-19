@@ -51,7 +51,7 @@ class OccupancyFilter implements BaseFilter
             else
             {
                 if (!$is_arrival) return false;
-                if ( strtotime($last_dep->fetchFirst("deptime")) + (30*60) >  strtotime($flight_time)) return false;
+                if ( strtotime($last_dep->fetchFirst("deptime")) + (10*60) >  strtotime($flight_time)) return false;
             }
             return true;
         }

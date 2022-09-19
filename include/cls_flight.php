@@ -37,21 +37,22 @@ class Flight {
         $this->_vid = $query_result->fetchFirst("vid");
         $this->_bookingtimestamp = $query_result->fetchFirst("bookingtimestamp");
         $this->_bookingstatus = $query_result->fetchFirst("bookingstatus");
+        $this->_turnover_id = $query_result->fetchFirst("turnover");
     }
 
     public static function FromFlightnumber($flightnumber) {
         global $MYSQL;
-        return new self($MYSQL->execute("SELECT * FROM `rfe_flights` WHERE `flightnumber` = '$flightnumber'"));
+        return new self($MYSQL->execute("SELECT `id`, `flightnumber`, `radiocallsign`, `origin`, `destination`, `deptime`, `arrtime`, `gate`, `acft`, `route`, COALESCE(`turnover`,(SELECT `rfe_flights_2`.`id` FROM `rfe_flights` AS `rfe_flights_2` WHERE `rfe_flights_2`.`turnover` = `rfe_flights`.`id`)) AS `turnover`, `vid`, `bookingtimestamp`, `bookingstatus` FROM `rfe_flights` WHERE `flightnumber` = '$flightnumber'"));
     }
 
     public static function FromID($id) {
         global $MYSQL;
-        return new self($MYSQL->execute("SELECT * FROM `rfe_flights` WHERE `id` = '$id'"));
+        return new self($MYSQL->execute("SELECT `id`, `flightnumber`, `radiocallsign`, `origin`, `destination`, `deptime`, `arrtime`, `gate`, `acft`, `route`, COALESCE(`turnover`,(SELECT `rfe_flights_2`.`id` FROM `rfe_flights` AS `rfe_flights_2` WHERE `rfe_flights_2`.`turnover` = `rfe_flights`.`id`)) AS `turnover`, `vid`, `bookingtimestamp`, `bookingstatus` FROM `rfe_flights` WHERE `id` = '$id'"));
     }
 
     public function clear_cache() {
         global $MYSQL;
-        $query_result = $MYSQL->execute("SELECT * FROM `rfe_flights` WHERE `id` = '$this->_id'");
+        $query_result = $MYSQL->execute("SELECT `id`, `flightnumber`, `radiocallsign`, `origin`, `destination`, `deptime`, `arrtime`, `gate`, `acft`, `route`, COALESCE(`turnover`,(SELECT `rfe_flights_2`.`id` FROM `rfe_flights` AS `rfe_flights_2` WHERE `rfe_flights_2`.`turnover` = `rfe_flights`.`id`)) AS `turnover`, `vid`, `bookingtimestamp`, `bookingstatus` FROM `rfe_flights` WHERE `id` = '$this->_id'");
 
         $this->_id = $query_result->fetchFirst("id");
         $this->_flightnumber = $query_result->fetchFirst("flightnumber");
@@ -66,6 +67,7 @@ class Flight {
         $this->_vid = $query_result->fetchFirst("vid");
         $this->_bookingtimestamp = $query_result->fetchFirst("bookingtimestamp");
         $this->_bookingstatus = $query_result->fetchFirst("bookingstatus");
+        $this->_turnover_id = $query_result->fetchFirst("turnover");
     }
 
     # GETTER
@@ -128,7 +130,7 @@ class Flight {
 
     # SETTER
 
-    public function assign_stand(Stand $stand) {
+    public function assign_stand(Stand $stand, $last_turnover = null) {
         global $MYSQL;
 
         $id = $stand->identifier();
@@ -139,7 +141,8 @@ class Flight {
         if ($this->has_turnover())
         {
             $turnover = $this->turnover();
-            $turnover->assign_stand($stand);
+            if ($last_turnover === null || $last_turnover != $turnover->id())
+                $turnover->assign_stand($stand, $this->_id);
         }
 
         echo "Setted {$this->_radiocallsign} to {$stand->identifier()} \n";
@@ -166,9 +169,7 @@ class Flight {
     {
         global $MYSQL;
 
-        $turnover = $MYSQL->execute("SELECT `turnover` FROM `rfe_flights` WHERE `id` = '{$this->_id}'");
-
-        if ($turnover->fetchFirst("turnover") == null) {
+        if ($this->_turnover_id == null) {
 
             $incr_flightnumber = $this->__get_increased_flightnumber($this->_flightnumber);
             $decr_flightnumber = $this->__get_increased_flightnumber($this->_flightnumber);
@@ -187,7 +188,7 @@ class Flight {
 
         } else {
             $this->_has_turnover = true;
-            $this->_turnover = Flight::FromID($turnover->fetchFirst("turnover"));
+            $this->_turnover = Flight::FromID($this->_turnover_id);
             return;
         }
 
@@ -196,12 +197,12 @@ class Flight {
         return;
     }
 
-    public function turnover() {
+    public function turnover(): Flight {
         if ($this->_has_turnover === null) $this->_get_turnover();
         return $this->_turnover;
     }
 
-    public function has_turnover() {
+    public function has_turnover(): bool {
         if ($this->_has_turnover === null) $this->_get_turnover();
         return $this->_has_turnover;
     }
