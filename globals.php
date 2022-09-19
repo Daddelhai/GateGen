@@ -31,10 +31,6 @@ global $IVAOUSR;
 
 if(isset($_COOKIE[cookie_name])) {
     $IVAOUSR = json_decode(file_get_contents(api_url.'?type=json&token='.$_COOKIE[cookie_name]),true);
-    if (!$IVAOUSR['staff']) {
-        http_response_code(403);
-        die();
-    }
 } else {
     http_response_code(403);
     die();
